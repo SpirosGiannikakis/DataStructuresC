@@ -1,30 +1,27 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
-#include <list>
 #include <fstream>
 #include <vector>
 #include <cstdlib>
+#include "LinkedList.h"
+
 
 using namespace std;
 
 
 int main () {
 
+  // char s[40] = "1256 8942 1965 42";
+  //
+  // int n = atoi(s);
+  //
+  // cout << n << endl;
+  //
+  // int j = 0;
+  // for(int i = 0; i < strlen(s); i++){
+  //   if(s[i] == ' ') {
 
-  char s[40] = "1256 8942 1965 42";
-
-  int n = atoi(s);
-
-  cout << n << endl;
-
-  int j = 0;
-  for(int i = 0; i < strlen(s); i++){
-    if(s[i] == ' ') {
-
-    }
-
-  }
 
 
 }
