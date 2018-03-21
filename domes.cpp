@@ -21,12 +21,8 @@ int main(void) {
   // for(int i = 0; i < aks_size; i++){
   //   std::cout << "Αξιολογησε το " << i << "αξιοθεατο: ";
   //   cin >> vath[i];
-  // }
-
-
-
-
-
+  // }fbvxvvzvsz
+afruawfafuawfuawfawufawbfawufafnuawfnaufnawf
 
   return 0;
 }
