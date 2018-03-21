@@ -1,29 +1,31 @@
-#ifndef LinkedList
+#ifndef LinkedList // if_not_defined
 #define LinkedList
 
 
 #include<iostream>
 using namespace std;
-struct node
+struct node //Δημιουργία του κομβου node ο οποιος περιεχει δυο πεδια.
 {
-	int data;
-	node *next;
+	int data; //Πεδιο data που περιχει τα δεδομενα του κομβου
+	node *next; //Πεδιο next το οποιο αποτελει δεικτης στην διευθηνση του επομενου κομβου
 };
-class list
+class list // Δηλωση της κλασσης list η οποια θα αποτελεσει την δικη μας εκδοση μιας Singly Linked list
 {
 		private:
-		node *head, *tail;
+		node *head, *tail; //Δηλωση δυο δεικτων οι οποιοι δειχνουν σε αντικειμενα τυπου node
 		public:
-		list()
+		list() // constructor
 		{
-			head=NULL;
-			tail=NULL;
+			head=NULL; // αρχικοποιηση του δεικτη head με NULL ετσι ωστε να αποφυγουμε τιμες σκουπιδια
+			tail=NULL; // αρχικοποιηση και του δεικτη tail
 		}
-		void createnode(int value)
+	 														 //Δηλωση μεθοδου createnode η οποια θα δημιουργει εναν καινουργια κομβο της λιστας του
+		void createnode(int value)//οποιου θα δινουμε εμεις την τιμη που θα περιεχει. Και ο καινουργιος κομβος θα προστιθεται
+														 //στο τελος της εκαστοτε λιστας
 		{
 			node *temp=new node;
-			temp->data=value;
-			temp->next=NULL;
+			temp->data=value; // Δινουμε στο πεδιο data του νεου κομβου την τιμη που εδωσε ο χρηστης ως ορισμα της createnode
+			temp->next=NULL; //
 			if(head==NULL)
 			{
 				head=temp;
@@ -36,24 +38,33 @@ class list
 				tail=temp;
 			}
 		}
-		void display()
+
+
+		void display() //Δηλωση της μεθοδου display η οποια θα εκτυπωνει το πεδιο data όλων των κομβων της λιστας
 		{
 			node *temp=new node;
 			temp=head;
-			while(temp!=NULL)
+			while(temp!=NULL) // Οσο ο δεικτης δεν δειχνει στην γειωση συνεχιζυομε να προσπελαυνουμε κομβους
 			{
-				cout<<temp->data<<"\t";
-				temp=temp->next;
+				cout<<temp->data<<" "; // εκτυπωση του πεδιου data των κομβων
+				temp=temp->next; // redirecitng τον δεικτη στον επομενο κομβο
 			}
 		}
-		void insert_start(int value)
+
+
+		void insert_start(int value) // Δηλωση της συναρτησης insert_start η οποία δημιουργει εναν νεο κομβο
+																// στην αρχη της εκαστοτε λιστας
 		{
 			node *temp=new node;
 			temp->data=value;
 			temp->next=head;
 			head=temp;
 		}
-		void insert_position(int pos, int value)
+
+
+	 																					  // Δηλωση της συναρτηση insert_position η οποια δημιουργει
+		void insert_position(int pos, int value) // εναν νεο κομβο στην εκαστοτε λιστα και τον τοποθετει
+																					  //  στην θεση που θα προσδιορισει ο χρηστης
 		{
 			node *pre=new node;
 			node *cur=new node;
@@ -68,14 +79,16 @@ class list
 			pre->next=temp;
 			temp->next=cur;
 		}
-		void delete_first()
+
+
+		void delete_first() // Δηλωση της συναρτησης delete_first η οποια διαγραφει τον πρωτο κομβο της λιστας
 		{
 			node *temp=new node;
 			temp=head;
 			head=head->next;
 			delete temp;
 		}
-		void delete_last()
+		void delete_last() // Δηλωση της συναρτησης delete_last η οποια διαγραφει τον τελευταιο κομβο της λιστας
 		{
 			node *current=new node;
 			node *previous=new node;
@@ -89,7 +102,8 @@ class list
 			previous->next=NULL;
 			delete current;
 		}
-		void delete_position(int pos)
+		void delete_position(int pos) // Δηλωση της συναρτησης delete_position η οποια διαγραφει τον κομβο της λιστας
+																 // που την θεση του θα δηλωσει ο χρηστης
 		{
 			node *current=new node;
 			node *previous=new node;
@@ -103,4 +117,4 @@ class list
 		}
 };
 
-#endif
+#endif // τελος του headerfile
