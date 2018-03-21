@@ -23,6 +23,6 @@ int main(void) {
   //   cin >> vath[i];
   // }fbvxvvzvsz
 afruawfafuawfuawfawufawbfawufafnuawfnaufnawf
-
+asdadasdasd
   return 0;
 }
