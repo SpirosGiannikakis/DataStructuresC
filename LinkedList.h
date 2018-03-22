@@ -1,9 +1,13 @@
-#ifndef LinkedList // if_not_defined
-#define LinkedList
+#ifndef LinkedList_ // if_not_defined
+#define LinkedList_
 
 
 #include<iostream>
+
+
 using namespace std;
+
+
 struct node //Δημιουργία του κομβου node ο οποιος περιεχει δυο πεδια.
 {
 	int data; //Πεδιο data που περιχει τα δεδομενα του κομβου
