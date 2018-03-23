@@ -2,56 +2,142 @@
 #include <stdio.h>
 #include <string>
 #include <fstream>
-#include <vector>
 #include <cstdlib>
 #include "LinkedList.h"
 #include "Stack.h"
 
 
 using namespace std;
+using string = std::string;
 
 
-int main () {
+int main() {
+
+  //I've got no idea what I'm doing
+  ifstream myfile("t102.txt");
+  int Days, Tours, start_Day, number_of_vertices, sth;
+  double garbage;
+  double tmp;
+
+  int line_counter = 1;
+  int col_counter = 2;
+  int vertex_number[10000]; //we are going to use list
+  int start_tour;
+  int finish_tour;
+  double x[10000];
+  double y[10000];
+  int visiting_duration[10000];
+  int score_of_location[10000];
+  int open[10000][6];
+  int close[10000][6];
 
 
+  myfile >> Days >> Tours >> start_Day >> number_of_vertices \
+        >> garbage >> garbage >> garbage >> garbage >> \
+        garbage >> garbage >> garbage >> garbage >> \
+        garbage >> garbage >> garbage  >> garbage  \
+        >> vertex_number[0] >> x[0] >> y[0] >> visiting_duration[0] >> \
+        score_of_location[0] >> start_tour >> finish_tour;
 
-  char s[40] = "124.5 45.6 745.7 78442 541 1 1";
-
-  char mpalanter[40]; //char array gia na apothikefsei kathe ena arithmo
-  string mpalanter2; //string gia na apothikeusei to char array ws string
-
-  double n[50];
-
-
-  int i, z, j = 0, x = 0, count = 0;
-
-  //loop gia na pigenei se kathe stixio
-  for(i = 0; i < strlen(s); i++){
-    if(s[i] == ' ') { //otan entopizei keno
-      int counter = 0;
-
-      for(z = x; z < i; z++) {
-        mpalanter[counter] = s[z]; //gemizoume to char arrays me tous arithmous enan enan
-
-        counter++;
-
+  while(line_counter > 0 && line_counter <= 108 && myfile >> vertex_number[line_counter]) {
+    while(col_counter > 0 && col_counter <= 21 && myfile >> tmp) {
+      if(col_counter == 2) {
+        x[line_counter] = tmp;
       }
 
-      i++;
-      x = i;
+      else if(col_counter == 3) {
+        y[line_counter] = tmp;
+      }
 
-      mpalanter2 = string(mpalanter); //convert char array se string
-      n[count] = std::stod(mpalanter2); //convert string to int
-      count++;
-      memset(mpalanter, 0, 40); //empty chararray
+      else if(col_counter == 4) {
+        visiting_duration[line_counter] = tmp;
+      }
+
+      else if(col_counter == 5) {
+        score_of_location[line_counter] = tmp;
+      }
+
+      else if(col_counter == 6) {
+        garbage = tmp;
+      }
+
+      else if(col_counter == 7) {
+        open[line_counter][0] = tmp;
+      }
+
+      else if(col_counter == 8) {
+        close[line_counter][0] = tmp;
+      }
+
+      else if(col_counter == 9) {
+        open[line_counter][1] = tmp;
+      }
+
+      else if(col_counter == 10) {
+        close[line_counter][1] = tmp;
+      }
+
+      else if(col_counter == 11) {
+        open[line_counter][2] = tmp;
+      }
+
+      else if(col_counter == 12) {
+        close[line_counter][2] = tmp;
+      }
+
+      else if(col_counter == 13) {
+        open[line_counter][3] = tmp;
+      }
+
+      else if(col_counter == 14) {
+        close[line_counter][3] = tmp;
+      }
+
+      else if(col_counter == 15) {
+        open[line_counter][4] = tmp;
+      }
+
+      else if(col_counter == 16) {
+        close[line_counter][4] = tmp;
+      }
+
+      else if(col_counter == 17) {
+        open[line_counter][5] = tmp;
+      }
+
+      else if(col_counter == 18) {
+        close[line_counter][5] = tmp;
+      }
+
+      else if(col_counter == 19) {
+        open[line_counter][6] = tmp;
+      }
+
+      else if(col_counter == 20) {
+        close[line_counter][6] = tmp;
+      }
+
+      else  {
+        garbage = tmp;
+      }
+
+
+      std::cout << "tmp" << tmp << '\n';
+      std::cout << "col counter : " << col_counter << '\n';
+      col_counter++;
     }
-
-
+    std::cout << "line counter: " << line_counter << '\n';
+    line_counter++;
+    col_counter = 2;
   }
 
-  for(int y = 0; y < 8; y++) {
-    cout << n[y] << endl;
+  for (int i = 0; i < 1000; i++) {
+    std::cout << x[i] << '\n';
   }
 
 
- }
+  cout << line_counter << endl;
+
+
+  return 0;
+}

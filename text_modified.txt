@@ -1,0 +1,71 @@
+***************************
+* TTDP test instances 	  *
+***************************
+
+The first line contains the following data:
+
+	k M SD N C B E1 E2 E3 E4 E5 E6 E7 E8 E9 E10
+
+Where
+	k=20  // Apothikeush sthn metavlhth k gia tis hmeres
+
+	M = number of tours // Apothikeush sthn metavlhth M gia ton arithmo twn diadromwn
+
+	SD = start day (from 0 to 6) // Apothikeush sthn metavlhth SD
+
+	N = number of vertices
+
+	C = not relevant // Dump
+	B = not relevant // Dump
+	Ez = not relevant //Dump
+
+The second line associates with start/end point (typically hotel): //Stoixeia Ksenodoxeiou
+
+	i x y d S 0 C
+
+Where
+	i = vertex number = 0 //Apothikeush ston pinaka me ta vertexes twn aksiotheatwn
+
+	x = x coordinate // Tetagmenh x tou ksenodoxeiou , apothikseush ston pinaka H struct me tis suntetagmenes twn aksiotheatwn sto pedio x
+
+	y = y coordinate // Tetagmenh y tou ksenodoxeiou , apothikseush ston pinaka H struct me tis suntetagmenes twn aksiotheatwn sto pedio y
+
+	d = visiting duration = 0 //Apothikeush sthn domh me tous xronous episkepshs
+	
+	S = score of the location = 0 //Apothikeush sthn domh me tis vathmologies twn aksiotheatwn
+
+	O = opening of time window (start of the tour) //Apothikeush sthn metavlhth O opou O h wra pou arxizei to dromologio
+
+	C = closing of time window (end of the tour) // Apothikeush sthn metavlhth C opou C h wra pou teleiwnei to dromolgio kai o touristas tha prepei na vriskete sto ksenodoxeio
+	
+
+The remaining lines contain the data of each point. 
+For each point, the line contains the following data: //Stoixeia twn aksiotheatwn
+
+	i x y d S t open[0] close[0] open[1] close[1] open[2] close[2] open[3] close[3] open[4] close[4] open[5] close[5] open[6] close[6] b
+
+Where
+	i = vertex number // Apothikeush sthn domh twn aksiotheatwn ws deikths tou kathe aksiotheatou
+
+	x = x coordinate // Tetagmenh x tou i-ostou aksiotheatou , apothikeush sthn domh twn suntetagmenwn (Me isos parent domh auth tou aksiotheatou)
+
+	y = y coordinate // Tetagmenh y tou i-ostou aksiotheatou , apothikeush sthn domh twn suntetagmenwn (Me isos parent domh auth tou aksiotheatou)
+
+	d = visiting duration // Apothikeush sthn domh opou vriskontai oi wres episkepshs tou kathe aksiotheatou
+
+	S = score of the location // Apothikeush sthn domh opou vriskontai oi vathmologies tou kathe aksiotheatou
+
+	t = not relevant //Dump
+
+	open[i] = the opening hour of the day i , i=0,1,2,3,4,5,6 //Apothikeush Sthn domh opou vrisketai h wra pou anoigei to ekastote aksiotheato thn i-osth hmera
+
+	close[i] = the closing hour of the day i , i=0,1,2,3,4,5,6 //Apothikeush Sthn domh opou vrisketai h wra pou klhnei to ekastote aksiotheato thn i-osth hmera
+
+
+	b = not relevant //Dump
+
+* REMARKS *
+	- The first point (vertex number 0) is the starting AND ending point.
+	- The first regular point has vertex number 1. 
+	- The time budget per path (Tmax) equals the closing time minus the starting time of the starting point.
+	- The Euclidean distance is used and rounded down to the second decimal.
