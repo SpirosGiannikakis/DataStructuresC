@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include "LinkedList.h"
 #include "Stack.h"
+#include "CircularLinkedList.h"
 
 
 using namespace std;
@@ -13,27 +14,28 @@ using string = std::string;
 
 int main() {
 
-  //I've got no idea what I'm doing
+
   ifstream myfile("t102.txt");
   int Days, Tours, start_Day, number_of_vertices, sth;
   double garbage;
   double tmp;
 
+  myfile >> Days >> Tours >> start_Day >> number_of_vertices;
+
   int line_counter = 1;
   int col_counter = 2;
-  int vertex_number[10000]; //we are going to use list
+  int vertex_number[number_of_vertices]; //we are going to use list
   int start_tour;
   int finish_tour;
-  double x[10000];
-  double y[10000];
-  int visiting_duration[10000];
-  int score_of_location[10000];
-  int open[10000][6];
-  int close[10000][6];
+  double x[number_of_vertices];
+  double y[number_of_vertices];
+  int visiting_duration[number_of_vertices];
+  int score_of_location[number_of_vertices];
+  int open[number_of_vertices][6];
+  int close[number_of_vertices][6];
 
 
-  myfile >> Days >> Tours >> start_Day >> number_of_vertices \
-        >> garbage >> garbage >> garbage >> garbage >> \
+  myfile >> garbage >> garbage >> garbage >> garbage >> \
         garbage >> garbage >> garbage >> garbage >> \
         garbage >> garbage >> garbage  >> garbage  \
         >> vertex_number[0] >> x[0] >> y[0] >> visiting_duration[0] >> \
@@ -131,7 +133,7 @@ int main() {
     col_counter = 2;
   }
 
-  for (int i = 0; i < 1000; i++) {
+  for (int i = 0; i < number_of_vertices; i++) {
     std::cout << x[i] << '\n';
   }
 

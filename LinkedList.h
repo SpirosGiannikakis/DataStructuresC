@@ -1,7 +1,9 @@
 #ifndef LINKEDLIST_H // if_not_defined
 #define LINKEDLIST_H // definition του headerfile
 
-#include<iostream>
+#include <iostream>
+#include <limits>
+
 
 using namespace std;
 
@@ -19,18 +21,18 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 		node<T> *head, *tail; //Δηλωση δυο δεικτων οι οποιοι δειχνουν σε αντικειμενα τυπου node
 		public:
 
-		list() // constructor
+		list() // Constructor
 		{
-			head = NULL; // αρχικοποιηση του δεικτη head με NULL ετσι ωστε να αποφυγουμε τιμες "σκουπιδια"
-			tail = NULL; // αρχικοποιηση και του δεικτη tail
+			head = nullptr; // αρχικοποιηση του δεικτη head με NULL ετσι ωστε να αποφυγουμε τιμες "σκουπιδια"
+			tail = nullptr; // αρχικοποιηση και του δεικτη tail
 			cout << "In constructor" << '\n';
 		}
 
 
-		~list()
+		~list() // Destructor
 		{
 			node<T>* tempo;
-			while(head != NULL)
+			while(head != nullptr)
 			{
 				tempo = head->next;
 				delete head;
@@ -44,12 +46,12 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 		{
 			node<T> *temp = new node<T>;
 			temp->data = value; // Δινουμε στο πεδιο data του νεου κομβου την τιμη που εδωσε ο χρηστης ως ορισμα της createnode
-			temp->next = NULL;
-			if(head == NULL)
+			temp->next = nullptr;
+			if(head == nullptr)
 			{
 				head = temp;
 				tail = temp;
-				temp = NULL;
+				temp = nullptr;
 			}
 			else
 			{
@@ -63,10 +65,10 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 		{
 			node<T> *temp = new node<T>;
 			temp = head;
-			while(temp != NULL) // Οσο ο δεικτης δεν δειχνει στην γειωση συνεχιζυομε να προσπελαυνουμε κομβους
+			while(temp != nullptr) // Οσο ο δεικτης δεν δειχνει στην γειωση συνεχιζυομε να προσπελαυνουμε κομβους
 			{
 				cout << temp->data <<" "; // εκτυπωση του πεδιου data των κομβων
-				temp = temp->next; // redirecitng τον δεικτη στον επομενο κομβο
+				temp = temp->next; // redirecitng του δεικτη στον επομενο κομβο
 			}
 			cout << '\n';
 		}
@@ -82,9 +84,9 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 		}
 
 
-	 																					  // Δηλωση της συναρτηση insert_position η οποια δημιουργει
-		void insert_position(T pos, int value)	 // εναν νεο κομβο στην εκαστοτε λιστα και τον τοποθετει
-																					  //  στην θεση που θα προσδιορισει ο χρηστης
+	 																					 // Δηλωση της συναρτηση insert_position η οποια δημιουργει
+		void insert_position(T pos, int value)	// εναν νεο κομβο στην εκαστοτε λιστα και τον τοποθετει
+																					 //  στην θεση που θα προσδιορισει ο χρηστης
 		{
 			node<T> *pre = new node<T>;
 			node<T> *cur = new node<T>;
@@ -115,19 +117,19 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 			node<T> *current = new node<T>;
 			node<T> *previous = new node<T>;
 			current = head;
-			while(current->next != NULL)
+			while(current->next != nullptr)
 			{
 				previous = current;
 				current = current->next;
 			}
 			tail = previous;
-			previous->next = NULL;
+			previous->next = nullptr;
 			delete current;
 		}
 
 
 		void delete_position(T pos) // Δηλωση της συναρτησης delete_position η οποια διαγραφει τον κομβο της λιστας
-																 // που την θεση του θα δηλωσει ο χρηστης
+															 // που την θεση του θα δηλωσει ο χρηστης
 		{
 			node<T> *current = new node<T>;
 			node<T> *previous = new node<T>;
@@ -139,6 +141,101 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 			}
 			previous->next = current->next;
 		}
+
+		int length() const{
+
+			node<T> *current = head;
+			int len = 0;
+			while(current){
+				len++;
+				current = current->next;
+			}
+			return len;
+		}
+
+
+
+		T find(int k)
+		{
+			node<T> *current = new node<T>;
+
+			if(k < 1){
+				cout << "Invalid Index point" << '\n';
+				throw std::out_of_range ("Invalid Index point");
+			}
+			if(k > length()){
+				cout << "Index Out of Bounds" << '\n';
+				throw std::out_of_range ("Invalid Index point");
+			}
+			current = head;
+			int index = 1;
+			while (index < k && current){
+				current = current->next;
+				index++;
+			}
+			if(current){
+				cout << current->data << '\n';
+				return current->data;
+			}
+		}
+
+		int search(const T& x) const{
+
+			node<T> *current = new node<T>;
+			current = head;
+			int index = 1;
+			while (current && current->data != x){
+				current = current->next;
+				index++;
+			}
+			if(current){
+				return index;
+			}
+			return 0;
+		}
+
+		bool isempty(){
+
+			if(head == nullptr){
+				return true;
+			}
+			return false;
+		}
+
+		T const findmax(){
+			T max;
+			node<T> *current = new node<T>;
+			node<T> *nn = new node<T>;
+			nn = head->next;
+			current = head;
+			max = std::numeric_limits<T>::min();
+			int index = 1;
+			while(current){
+				if(current->data > max){
+					max = current->data;
+				}
+				current = current->next;
+				index++;
+			}
+			return max;
+			}
+
+			T const findmin(){
+				T max;
+				node<T> *current = new node<T>;
+				current = head;
+				max = std::numeric_limits<T>::max();
+				int index = 1;
+				while(current){
+					if(current->data < max){
+						max = current->data;
+					}
+					current = current->next;
+					index++;
+				}
+				return max;
+				}
+
 };
 
 #endif // τελος του headerfile
