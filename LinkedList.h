@@ -1,5 +1,6 @@
-#ifndef LINKEDLIST_H // if_not_defined
-#define LINKEDLIST_H // definition του headerfile
+#pragma once
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
 
 #include <iostream>
 #include <limits>
@@ -25,19 +26,21 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 		{
 			head = nullptr; // αρχικοποιηση του δεικτη head με NULL ετσι ωστε να αποφυγουμε τιμες "σκουπιδια"
 			tail = nullptr; // αρχικοποιηση και του δεικτη tail
-			cout << "In constructor" << '\n';
+			cout << "Constructor Called" << '\n';
 		}
 
 
 		~list() // Destructor
 		{
+			int index = 1;
 			node<T>* tempo;
 			while(head != nullptr)
 			{
 				tempo = head->next;
 				delete head;
 				head = tempo;
-				cout << "In Destructor" << '\n';
+				cout << "Destructor Called "<< "Destroying node number "<< index << '\n';
+				index++;
 			}
 		}
 	 														 //Δηλωση μεθοδου createnode η οποια θα δημιουργει εναν καινουργια κομβο της λιστας του
@@ -85,7 +88,7 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 
 
 	 																					 // Δηλωση της συναρτηση insert_position η οποια δημιουργει
-		void insert_position(T pos, int value)	// εναν νεο κομβο στην εκαστοτε λιστα και τον τοποθετει
+		void insert_position(int pos, T value)	// εναν νεο κομβο στην εκαστοτε λιστα και τον τοποθετει
 																					 //  στην θεση που θα προσδιορισει ο χρηστης
 		{
 			node<T> *pre = new node<T>;
@@ -150,6 +153,7 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 				len++;
 				current = current->next;
 			}
+			cout << "The lists length is: " << len << '\n';
 			return len;
 		}
 
@@ -174,7 +178,7 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 				index++;
 			}
 			if(current){
-				cout << current->data << '\n';
+				cout << "In index point: " << k << " || " << " The value is: "<< current->data << '\n';
 				return current->data;
 			}
 		}
@@ -189,6 +193,7 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 				index++;
 			}
 			if(current){
+				cout << "The value: " << x << " || " << "Was found in index point: " << index << '\n';
 				return index;
 			}
 			return 0;
@@ -197,8 +202,10 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 		bool isempty(){
 
 			if(head == nullptr){
+				cout << "The list is empty" << '\n';
 				return true;
 			}
+			cout << "The list is NOT empty" << '\n';
 			return false;
 		}
 
@@ -217,25 +224,27 @@ class list // Δηλωση της κλασσης list η οποια θα απο�
 				current = current->next;
 				index++;
 			}
+			cout << "The MAXIMUM value found in the list is: " << max << '\n';
 			return max;
 			}
 
 			T const findmin(){
-				T max;
+				T min;
 				node<T> *current = new node<T>;
 				current = head;
-				max = std::numeric_limits<T>::max();
+				min = std::numeric_limits<T>::max();
 				int index = 1;
 				while(current){
-					if(current->data < max){
-						max = current->data;
+					if(current->data < min){
+						min = current->data;
 					}
 					current = current->next;
 					index++;
 				}
-				return max;
+				cout << "The MINIMUM value found in the list is: " << min << '\n';
+				return min;
 				}
 
 };
 
-#endif // τελος του headerfile
+#endif

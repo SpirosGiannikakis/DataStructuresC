@@ -5,7 +5,6 @@
 #include <cstdlib>
 #include "LinkedList.h"
 #include "Stack.h"
-#include "CircularLinkedList.h"
 
 
 using namespace std;
@@ -15,7 +14,8 @@ using string = std::string;
 int main() {
 
 
-  ifstream myfile("t102.txt");
+
+  ifstream myfile("t250.txt");
   int Days, Tours, start_Day, number_of_vertices, sth;
   double garbage;
   double tmp;
@@ -24,7 +24,7 @@ int main() {
 
   int line_counter = 1;
   int col_counter = 2;
-  int vertex_number[number_of_vertices]; //we are going to use list
+  int vertex_number[number_of_vertices];
   int start_tour;
   int finish_tour;
   double x[number_of_vertices];
@@ -41,7 +41,7 @@ int main() {
         >> vertex_number[0] >> x[0] >> y[0] >> visiting_duration[0] >> \
         score_of_location[0] >> start_tour >> finish_tour;
 
-  while(line_counter > 0 && line_counter <= 108 && myfile >> vertex_number[line_counter]) {
+  while(line_counter > 0 && line_counter <= number_of_vertices && myfile >> vertex_number[line_counter]) {
     while(col_counter > 0 && col_counter <= 21 && myfile >> tmp) {
       if(col_counter == 2) {
         x[line_counter] = tmp;
