@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <cstdlib>
+#include <exception>
 #include "LinkedList.h"
 #include "Stack.h"
 
@@ -13,9 +14,14 @@ using string = std::string;
 
 int main() {
 
-
-
-  ifstream myfile("t250.txt");
+  string file;
+  cout << "Παρακαλώ δώστε το όνομα του αρχείου που θέλετε να χρησιμοποιήσετε" <<
+          "ως έισοδο στο πρόγραμμα" << '\n';
+  getline(cin, file);
+  ifstream myfile(file);
+  if(!myfile){
+        throw runtime_error("Could not open file");
+  }
   int Days, Tours, start_Day, number_of_vertices, sth;
   double garbage;
   double tmp;
@@ -43,92 +49,111 @@ int main() {
 
   while(line_counter > 0 && line_counter <= number_of_vertices && myfile >> vertex_number[line_counter]) {
     while(col_counter > 0 && col_counter <= 21 && myfile >> tmp) {
-      if(col_counter == 2) {
-        x[line_counter] = tmp;
-      }
+      switch(col_counter){
 
-      else if(col_counter == 3) {
+        case 2:
+        x[line_counter]= tmp;
+        break;
+
+       case 3:
         y[line_counter] = tmp;
-      }
+        break;
 
-      else if(col_counter == 4) {
+       case 4:
         visiting_duration[line_counter] = tmp;
-      }
+        break;
 
-      else if(col_counter == 5) {
+
+      case 5:
         score_of_location[line_counter] = tmp;
-      }
+        break;
 
-      else if(col_counter == 6) {
+
+      case 6:
         garbage = tmp;
-      }
+        break;
 
-      else if(col_counter == 7) {
+
+      case 7:
         open[line_counter][0] = tmp;
-      }
+        break;
 
-      else if(col_counter == 8) {
+
+      case 8:
         close[line_counter][0] = tmp;
-      }
+        break;
 
-      else if(col_counter == 9) {
+
+      case 9:
         open[line_counter][1] = tmp;
-      }
+        break;
 
-      else if(col_counter == 10) {
+
+      case 10:
         close[line_counter][1] = tmp;
-      }
+        break;
 
-      else if(col_counter == 11) {
+
+      case 11:
         open[line_counter][2] = tmp;
-      }
+        break;
 
-      else if(col_counter == 12) {
+
+      case 12:
         close[line_counter][2] = tmp;
-      }
+        break;
 
-      else if(col_counter == 13) {
+
+      case 13:
         open[line_counter][3] = tmp;
-      }
+        break;
 
-      else if(col_counter == 14) {
+
+      case 14:
         close[line_counter][3] = tmp;
-      }
+        break;
 
-      else if(col_counter == 15) {
+
+      case 15:
         open[line_counter][4] = tmp;
-      }
+        break;
 
-      else if(col_counter == 16) {
+
+      case 16:
         close[line_counter][4] = tmp;
-      }
+        break;
 
-      else if(col_counter == 17) {
+
+      case 17:
         open[line_counter][5] = tmp;
-      }
+        break;
 
-      else if(col_counter == 18) {
+
+      case 18:
         close[line_counter][5] = tmp;
-      }
+        break;
 
-      else if(col_counter == 19) {
+
+      case 19:
         open[line_counter][6] = tmp;
-      }
+        break;
 
-      else if(col_counter == 20) {
+
+      case 20:
         close[line_counter][6] = tmp;
-      }
+        break;
 
-      else  {
+
+      default:
         garbage = tmp;
+
       }
 
-
-      std::cout << "tmp" << tmp << '\n';
-      std::cout << "col counter : " << col_counter << '\n';
+      cout << "tmp" << tmp << '\n';
+      cout << "col counter : " << col_counter << '\n';
       col_counter++;
     }
-    std::cout << "line counter: " << line_counter << '\n';
+    cout << "line counter: " << line_counter << '\n';
     line_counter++;
     col_counter = 2;
   }
@@ -139,6 +164,58 @@ int main() {
 
 
   cout << line_counter << endl;
+  cin.get();
+  cout << "#EPAN: "; // Arithmos #epan epanalhpsewn poy dinetai gia ton algorithmo
+  cout << Tours;
+
+
+  cin.get();
+  list<int> dromologia[Days]; // Δημιουργια Κ άδειων δρομολογίων
+
+  for(int i=0; i < Days; i++){
+    dromologia[i].isempty(); // Επιβεβαίωση του ότι τα δρομολόγια είναι κενά
+  }
+  cin.get();
+
+  cout << vertex_number[0] << '\n';
+  cout << x[0] << '\n';
+  cout << y[0] << '\n';
+  cout << visiting_duration[0] << '\n';
+  cout << score_of_location[0] << '\n';
+  cout << start_tour << '\n';
+  cout << finish_tour << '\n';
+
+
+  STACK : list<int> obj;
+
+  obj.createnode(25);
+
+
+
+
+  char* str = new char();
+
+  char *str;
+  str = (char*) mal
+
+
+list<int> *obj = new list<int>();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   return 0;
